@@ -1,3 +1,7 @@
 {
-    "app_name": "Subscription Manager"
+    "app_name": "Subscription Manager",
+    "name": "Name User",
+    "number": "Number User",
+    "price": "Price Subscription",
+    "date": "Date Subscription"
 }

@@ -59,6 +59,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Name User`
+  String get name {
+    return Intl.message(
+      'Name User',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number User`
+  String get number {
+    return Intl.message(
+      'Number User',
+      name: 'number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price Subscription`
+  String get price {
+    return Intl.message(
+      'Price Subscription',
+      name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date Subscription`
+  String get date {
+    return Intl.message(
+      'Date Subscription',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

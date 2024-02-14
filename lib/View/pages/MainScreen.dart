@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subscription_manager/Control/GetController.dart';
-import 'package:subscription_manager/Model/DataBaseApp/DataBaseSqflite.dart';
+import 'package:subscription_manager/View/Colors/Colors.dart';
+import 'package:subscription_manager/View/widget/CardView.dart';
 import 'package:subscription_manager/generated/l10n.dart';
+import 'Add_Item.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -20,13 +22,19 @@ class MainScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            backgroundColor: Colors.teal,
+            backgroundColor: ColorUsed.appBarColor,
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              controller.addItems({DataBaseSqflite.name: "ahmed"});
+              Get.to(AddItem());
             },
+            backgroundColor: ColorUsed.appBarColor,
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
+          body: const CardView(),
         );
       },
     );

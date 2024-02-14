@@ -1,13 +1,12 @@
 class Items {
-  String id, name, code, sale, buy, quantity;
+  String id, name, number, price,date;
 
   
   Items({
     required this.name,
-    required this.code,
-    required this.sale,
-    required this.buy,
-    required this.quantity,
+    required this.number,
+    required this.price,
+    required this.date,
     required this.id,
   });
 }

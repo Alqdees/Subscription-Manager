@@ -1,30 +1,32 @@
-import 'dart:developer';
+
 import 'dart:io';
-import 'package:sqflite_common/sqlite_api.dart';
+
 import 'package:path/path.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class DataBaseSqflite {
-  static const dataBaseName = "Point.db";
+  static const dataBaseName = "Manager.db";
   static const version = 1;
-  static const TableName = 'Items';
+  static const TableName = 'Users';
   static const TableAccount = 'Account';
   static const id = 'ID';
   static const name = 'Name';
-  static const codeItem = 'Code';
-  static const sale = 'Sale';
-  static const buy = 'Buy';
-  static const quantity = 'Quantity';
+  static const number = 'Number';
   static const date = 'Date';
+  static const price = 'Price';
+  // static const buy = 'Buy';
+  // static const quantity = 'Quantity';
+  // static const date = 'Date';
 
   Database? _database;
-  var s;
+  // var s;
   DataBaseSqflite() {
     databasesq;
     if (Platform.isWindows || Platform.isLinux) {
-      s = databaseFactoryFfi;
+      databaseFactoryFfi;
     }
   }
 
@@ -38,39 +40,46 @@ class DataBaseSqflite {
     }
   }
 
-  static Future<Database> initDataBase() async {
+  Future<Database> initDataBase() async {
     var datPath = await getDatabasesPath();
     String path = join(datPath, dataBaseName);
-    if (!await databaseExists(path)) {
-      try {
-        await Directory(dirname(path)).create(recursive: true);
-      } catch (e) {
-        if (kDebugMode) {
-          print(e);
-        }
-      }
-      ByteData data = await rootBundle.load(join("assets", dataBaseName));
+    
+    // if (await databaseExists(path)) {
+    //   try {
+    //     await Directory(dirname(path)).create(recursive: true);
+    //   } catch (e) {
+    //     if (kDebugMode) {
+    //       print(e);
+    //     }
+    //   }
 
-      List<int> bytes =
-          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    //   ByteData data = await rootBundle.load(join("assets", dataBaseName));
 
-      await File(path).writeAsBytes(bytes);
-    }
-    return await openDatabase(path, version: version);
+    //   List<int> bytes =
+    //       data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
+    //   await File(path).writeAsBytes(bytes);
+    // }
+    return await openDatabase(
+      path,
+      version: version,
+      onCreate: (db, version) {
+        db.execute(
+            "CREATE TABLE IF NOT EXISTS $TableName ($id INTEGER PRIMARY KEY AUTOINCREMENT  , $name TEXT , $number TEXT , $date TEXT , $price TEXT )");
+      },
+    );
   }
 
   Future<Database?> windowsApp() async {
     final path = await getDatabasesPath();
 
-    return await s.openDatabase(
+    return await databaseFactoryFfi.openDatabase(
       path,
       options: OpenDatabaseOptions(
         version: version,
         onCreate: (db, version) async {
           await db.execute(
-              "CREATE TABLE IF NOT EXISTS $TableName ($id INTEGER PRIMARY KEY AUTOINCREMENT  , $name TEXT , $codeItem TEXT , $sale TEXT , $buy TEXT , $quantity TEXT ,$date TEXT )");
-          await db.execute(
-              "CREATE TABLE IF NOT EXISTS $TableAccount ($id INTEGER PRIMARY KEY , $name TEXT  , $sale TEXT  , $quantity TEXT )");
+              "CREATE TABLE IF NOT EXISTS $TableName ($id INTEGER PRIMARY KEY AUTOINCREMENT  , $name TEXT , $number TEXT , $date TEXT , $price TEXT )");
         },
       ),
     );
@@ -127,7 +136,7 @@ class DataBaseSqflite {
 
   Future<Future<int>?> deleteAccount() async {
     Database? db = await databasesq;
-    
+
     // db?.delete(TableName, id);
     return db!.delete(TableAccount);
   }
@@ -141,51 +150,51 @@ class DataBaseSqflite {
     );
   }
 
-  Future<void> updateCostCol(double newValue) async {
-    final db = await databasesq;
-    List<Map<String, dynamic>> rows = await db!.query(TableName);
-    List<Map<String, dynamic>> updatedRows = rows.map((row) {
-      String num = row[sale].toString().replaceAll(RegExp(r'[^0-9.]'), '');
-      log('____$num');
-      double oldValue = double.parse(num);
-      double updatedValue = oldValue + newValue;
-      return {...row, sale: updatedValue};
-    }).toList();
-    Batch batch = db.batch();
-    for (var row in updatedRows) {
-      batch.update(
-        TableName,
-        row,
-        where: 'id = ?',
-        whereArgs: [row[id]],
-      );
-      log('___${row[id].toString()}');
-    }
-    await batch.commit();
-  }
+  // Future<void> updateCostCol(double newValue) async {
+  //   final db = await databasesq;
+  //   List<Map<String, dynamic>> rows = await db!.query(TableName);
+  //   List<Map<String, dynamic>> updatedRows = rows.map((row) {
+  //     String num = row[sale].toString().replaceAll(RegExp(r'[^0-9.]'), '');
+  //     log('____$num');
+  //     double oldValue = double.parse(num);
+  //     double updatedValue = oldValue + newValue;
+  //     return {...row, sale: updatedValue};
+  //   }).toList();
+  //   Batch batch = db.batch();
+  //   for (var row in updatedRows) {
+  //     batch.update(
+  //       TableName,
+  //       row,
+  //       where: 'id = ?',
+  //       whereArgs: [row[id]],
+  //     );
+  //     log('___${row[id].toString()}');
+  //   }
+  //   await batch.commit();
+  // }
 
-  Future<void> updateBuyCol(double newValue) async {
-    final db = await databasesq;
-    List<Map<String, dynamic>> rows = await db!.query(TableName);
-    List<Map<String, dynamic>> updatedRows = rows.map((row) {
-      String num = row[buy].toString().replaceAll(RegExp(r'[^0-9.]'), '');
-      log('____$num');
-      double oldValue = double.parse(num);
-      double updatedValue = oldValue + newValue;
-      return {...row, buy: updatedValue};
-    }).toList();
-    Batch batch = db.batch();
-    for (var row in updatedRows) {
-      batch.update(
-        TableName,
-        row,
-        where: 'id = ?',
-        whereArgs: [row[id]],
-      );
-      log('___${row[id].toString()}');
-    }
-    await batch.commit();
-  }
+  // Future<void> updateBuyCol(double newValue) async {
+  //   final db = await databasesq;
+  //   List<Map<String, dynamic>> rows = await db!.query(TableName);
+  //   List<Map<String, dynamic>> updatedRows = rows.map((row) {
+  //     String num = row[buy].toString().replaceAll(RegExp(r'[^0-9.]'), '');
+  //     log('____$num');
+  //     double oldValue = double.parse(num);
+  //     double updatedValue = oldValue + newValue;
+  //     return {...row, buy: updatedValue};
+  //   }).toList();
+  //   Batch batch = db.batch();
+  //   for (var row in updatedRows) {
+  //     batch.update(
+  //       TableName,
+  //       row,
+  //       where: 'id = ?',
+  //       whereArgs: [row[id]],
+  //     );
+  //     log('___${row[id].toString()}');
+  //   }
+  //   await batch.commit();
+  // }
 
   Future<List<Map<String, dynamic>>> accountOrder(
     String query,

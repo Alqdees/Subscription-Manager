@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subscription_manager/Control/GetController.dart';
 import 'package:subscription_manager/View/Colors/Colors.dart';
+import 'package:subscription_manager/View/NavDrawar/NavDrawar.dart';
 import 'package:subscription_manager/View/widget/CardView.dart';
 import 'package:subscription_manager/generated/l10n.dart';
 import 'Add_Item.dart';
@@ -15,6 +16,7 @@ class MainScreen extends StatelessWidget {
       init: GetController(),
       builder: (controller) {
         return Scaffold(
+          drawer: const NavDrawer(),
           appBar: AppBar(
             title: Text(
               S.of(context).app_name,
@@ -22,16 +24,16 @@ class MainScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            backgroundColor: ColorUsed.appBarColor,
+            backgroundColor: Colors.teal,
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               Get.to(AddItem());
             },
-            backgroundColor: ColorUsed.appBarColor,
-            child: const Icon(
+            backgroundColor: ColorUsed.primaryColor,
+            child: Icon(
               Icons.add,
-              color: Colors.white,
+              color: ColorUsed.fontColor,
             ),
           ),
           body: const CardView(),

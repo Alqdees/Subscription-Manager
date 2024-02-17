@@ -3,5 +3,8 @@
     "name": "Name User",
     "number": "Number User",
     "price": "Price Subscription",
-    "date": "Date Subscription"
+    "date": "Date Subscription",
+    "select": "Select... ",
+    "delete": "Delete",
+    "edit": "Edit"
 }

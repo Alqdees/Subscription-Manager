@@ -25,8 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_name":
             MessageLookupByLibrary.simpleMessage("Subscription Manager"),
         "date": MessageLookupByLibrary.simpleMessage("Date Subscription"),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "name": MessageLookupByLibrary.simpleMessage("Name User"),
         "number": MessageLookupByLibrary.simpleMessage("Number User"),
-        "price": MessageLookupByLibrary.simpleMessage("Price Subscription")
+        "price": MessageLookupByLibrary.simpleMessage("Price Subscription"),
+        "select": MessageLookupByLibrary.simpleMessage("Select... ")
       };
 }

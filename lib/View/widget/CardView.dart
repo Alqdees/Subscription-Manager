@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subscription_manager/Control/GetController.dart';
+import 'package:subscription_manager/generated/l10n.dart';
 import 'AllItems.dart';
 
 class CardView extends StatelessWidget {
@@ -42,7 +43,7 @@ class CardView extends StatelessWidget {
                               builder: (BuildContext context) {
                                 final width = MediaQuery.of(context).size.width;
                                 return AlertDialog(
-                                  title: const Text('S.of(context).select'),
+                                  title: Text(S.of(context).select),
                                   actions: [
                                     Row(
                                       children: [
@@ -65,9 +66,9 @@ class CardView extends StatelessWidget {
                                             // ),
                                             // );
                                           },
-                                          child: const Text(
-                                            'S.of(context).edit',
-                                            style: TextStyle(
+                                          child: Text(
+                                            S.of(context).edit,
+                                            style: const TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 22,
@@ -83,9 +84,9 @@ class CardView extends StatelessWidget {
                                             //     controller.items[index].id);
                                             // Get.back();
                                           },
-                                          child: const Text(
-                                            ' S.of(context).delete',
-                                            style: TextStyle(
+                                          child: Text(
+                                            S.of(context).delete,
+                                            style: const TextStyle(
                                               color: Colors.red,
                                               fontSize: 22,
                                             ),

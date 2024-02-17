@@ -17,6 +17,8 @@ class GetController extends GetxController {
 
   Future<void> addItems(Map<String, dynamic> data) async {
     await dataBaseSqflite.insert(data);
+     items.clear();
+    paginationData();
     update();
   }
 
@@ -35,7 +37,6 @@ class GetController extends GetxController {
         }
       },
     );
-    return null;
   }
 
   Future<void> getPData() async {

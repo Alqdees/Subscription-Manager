@@ -4,12 +4,7 @@ import '../Colors/Colors.dart';
 
 // ignore: must_be_immutable
 class TextFieldCustom extends StatelessWidget {
-  TextFieldCustom({
-    super.key,
-    this.name,
-    this.icons,
-    this.text
-  });
+  TextFieldCustom({super.key, this.name, this.icons, this.text});
   String? name;
   IconData? icons;
   TextEditingController? text = TextEditingController();
@@ -22,19 +17,18 @@ class TextFieldCustom extends StatelessWidget {
         controller: text,
         decoration: InputDecoration(
           labelText: name,
-          
           prefixIcon: Icon(
             icons,
-            color: ColorUsed.appBarColor,
+            color: ColorUsed.primaryColor,
           ),
           border: const OutlineInputBorder(),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: ColorUsed.appBarColor,
+              color: ColorUsed.primaryColor,
             ),
           ),
           labelStyle: TextStyle(
-            color: ColorUsed.appBarColor,
+            color: ColorUsed.primaryColor,
           ),
         ),
       ),

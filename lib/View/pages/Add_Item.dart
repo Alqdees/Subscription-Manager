@@ -31,7 +31,7 @@ class AddItem extends StatelessWidget {
               'Add Item',
               style: TextStyle(color: Colors.white),
             ),
-            backgroundColor: ColorUsed.appBarColor,
+            backgroundColor: ColorUsed.primaryColor,
             leading: IconButton(
               onPressed: () {
                 controller.update();
@@ -101,7 +101,7 @@ class AddItem extends StatelessWidget {
                     'Add',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: ColorUsed.appBarColor,
+                      color: ColorUsed.fontColor,
                       fontSize: 14,
                     ),
                   ),

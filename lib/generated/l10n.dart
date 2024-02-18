@@ -129,6 +129,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Update Data`
+  String get UpdateData {
+    return Intl.message(
+      'Update Data',
+      name: 'UpdateData',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

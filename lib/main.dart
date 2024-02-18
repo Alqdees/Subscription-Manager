@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+    
       theme: ThemeData(
         // This is the theme of your application.
         colorScheme: ColorScheme.fromSeed(

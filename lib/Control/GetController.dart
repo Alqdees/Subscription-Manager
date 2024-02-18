@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../Model/DataBaseApp/DataBaseSqflite.dart';
 import '../Model/Items.dart';
 
@@ -17,8 +16,8 @@ class GetController extends GetxController {
 
   Future<void> addItems(Map<String, dynamic> data) async {
     await dataBaseSqflite.insert(data);
-     items.clear();
-    paginationData();
+    items.clear();
+   
     update();
   }
 
@@ -34,9 +33,20 @@ class GetController extends GetxController {
           getPData();
           skip = skip + limit;
           isLaodingMore = false;
+          update();
         }
       },
     );
+  }
+
+  Future<void> updateData(
+    Map<String, dynamic> data,
+    String id,
+  ) async {
+    items.clear();
+    await dataBaseSqflite.updateItem(data, id);
+    paginationData();
+    update();
   }
 
   Future<void> getPData() async {
@@ -51,6 +61,13 @@ class GetController extends GetxController {
             ))
         .toList();
     items.addAll(item);
+    update();
+  }
+
+  Future<void> deleteItem(String id) async {
+    items.clear();
+    await dataBaseSqflite.delete(id);
+    paginationData();
     update();
   }
 }

@@ -150,6 +150,8 @@ class DataBaseSqflite {
     );
   }
 
+  
+
   // Future<void> updateCostCol(double newValue) async {
   //   final db = await databasesq;
   //   List<Map<String, dynamic>> rows = await db!.query(TableName);

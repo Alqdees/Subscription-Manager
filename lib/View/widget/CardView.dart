@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subscription_manager/Control/GetController.dart';
 import 'package:subscription_manager/generated/l10n.dart';
+import '../pages/UpdateData.dart';
 import 'AllItems.dart';
 
 class CardView extends StatelessWidget {
@@ -50,21 +51,19 @@ class CardView extends StatelessWidget {
                                         TextButton(
                                           onPressed: () {
                                             Get.back();
-                                            // Get.to(
-                                            // UpdateData(
-                                            //   named: controller
-                                            //       .items[index].name,
-                                            //   coded: controller
-                                            //       .items[index].code,
-                                            //   saled: controller
-                                            //       .items[index].sale,
-                                            //   buyt:
-                                            //       controller.items[index].buy,
-                                            //   quan: controller
-                                            //       .items[index].quantity,
-                                            //   id: controller.items[index].id,
-                                            // ),
-                                            // );
+                                            Get.to(
+                                              UpdateData(
+                                                named: controller
+                                                    .items[index].name,
+                                                numberd: controller
+                                                    .items[index].number,
+                                                priced: controller
+                                                    .items[index].price,
+                                                dated: controller
+                                                    .items[index].date,
+                                                id: controller.items[index].id,
+                                              ),
+                                            );
                                           },
                                           child: Text(
                                             S.of(context).edit,
@@ -80,9 +79,9 @@ class CardView extends StatelessWidget {
                                         ),
                                         TextButton(
                                           onPressed: () {
-                                            // controller.deleteItem(
-                                            //     controller.items[index].id);
-                                            // Get.back();
+                                            controller.deleteItem(
+                                                controller.items[index].id);
+                                            Get.back();
                                           },
                                           child: Text(
                                             S.of(context).delete,

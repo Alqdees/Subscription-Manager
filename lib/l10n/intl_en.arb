@@ -6,5 +6,6 @@
     "date": "Date Subscription",
     "select": "Select... ",
     "delete": "Delete",
-    "edit": "Edit"
+    "edit": "Edit",
+    "UpdateData": "Update Data"
 }

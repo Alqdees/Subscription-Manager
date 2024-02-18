@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:subscription_manager/View/Colors/Colors.dart';
 
 // ignore: must_be_immutable
 class AllItems extends StatelessWidget {
@@ -7,12 +7,17 @@ class AllItems extends StatelessWidget {
 
   String name, price;
   VoidCallback onPressed;
-  AllItems({super.key, required this.name, required this.price, required this.onPressed});
+  AllItems(
+      {super.key,
+      required this.name,
+      required this.price,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 12,
+      elevation: 1,
+      color: Colors.white,
       child: Row(
         children: [
           Expanded(

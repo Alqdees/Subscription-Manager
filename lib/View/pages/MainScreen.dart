@@ -16,16 +16,15 @@ class MainScreen extends StatelessWidget {
       init: GetController(),
       builder: (controller) {
         return Scaffold(
-          drawer: const NavDrawer(),
+          drawer:  NavDrawer(),
           appBar: AppBar(
-            title: Text(
-              S.of(context).app_name,
-              style: const TextStyle(
-                color: Colors.white,
+              title: Text(
+                S.of(context).app_name,
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
               ),
-            ),
-            backgroundColor: Colors.teal,
-          ),
+              backgroundColor: ColorUsed.primaryColor),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               Get.to(AddItem());

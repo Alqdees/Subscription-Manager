@@ -7,5 +7,9 @@
     "select": "Select... ",
     "delete": "Delete",
     "edit": "Edit",
-    "UpdateData": "Update Data"
+    "UpdateData": "Update Data",
+    "add": "Add Subscription",
+    "year": "Year ",
+    "month": "Month ",
+    "day": "Day "
 }

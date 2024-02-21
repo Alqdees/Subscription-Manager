@@ -139,6 +139,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Add Subscription`
+  String get add {
+    return Intl.message(
+      'Add Subscription',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Year `
+  String get year {
+    return Intl.message(
+      'Year ',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Month `
+  String get month {
+    return Intl.message(
+      'Month ',
+      name: 'month',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Day `
+  String get day {
+    return Intl.message(
+      'Day ',
+      name: 'day',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

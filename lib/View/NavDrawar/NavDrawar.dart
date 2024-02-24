@@ -3,9 +3,9 @@ import 'package:subscription_manager/View/Colors/Colors.dart';
 
 class NavDrawer extends StatelessWidget {
   NavDrawer({super.key});
-  
-  DateTime? date1 = DateTime(2022, 1, 4);
-  DateTime? date2 = DateTime(2022, 1, 1);
+
+  DateTime? date1 = DateTime(2024, 2, 24);
+  // DateTime? date2 = DateTime(2022, 1, 1);
 
   // Calculate difference in days
 
@@ -14,7 +14,7 @@ class NavDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Duration difference = date2!.difference(date1!);
+    // Duration difference = date2!.difference(date1!);
     return Drawer(
       elevation: 0,
       backgroundColor: ColorUsed.primaryColor,
@@ -30,8 +30,10 @@ class NavDrawer extends StatelessWidget {
           GestureDetector(
             child: const Text('Click Me -_-'),
             onTap: () {
-              differenceInDays = difference.inDays;
-              print('object clicked   $differenceInDays');
+              int a = date1!.millisecondsSinceEpoch;
+              
+              // differenceInDays = difference.inDays;
+              print('object clicked ___  $a');
             },
           )
         ],

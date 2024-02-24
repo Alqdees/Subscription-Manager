@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subscription_manager/Control/GetController.dart';
@@ -9,6 +11,8 @@ import '../widget/TextField.dart';
 
 class AddItem extends StatelessWidget {
   DataBaseSqflite? data;
+  DateTime? date1;
+  String? _timestamp;
 
   TextEditingController name = TextEditingController();
 
@@ -16,12 +20,14 @@ class AddItem extends StatelessWidget {
 
   TextEditingController price = TextEditingController();
 
-  TextEditingController date = TextEditingController();
-  TextEditingController dateM = TextEditingController();
+  TextEditingController year = TextEditingController();
+  TextEditingController month = TextEditingController();
+  TextEditingController day = TextEditingController();
   AddItem({super.key});
   @override
   Widget build(BuildContext context) {
     data = DataBaseSqflite();
+
     return GetBuilder<GetController>(
       init: GetController(),
       builder: (controller) {
@@ -69,18 +75,31 @@ class AddItem extends StatelessWidget {
                 icons: Icons.price_change,
                 text: price,
               ),
-              const SizedBox(
-                height: 16,
+              SizedBox(
+                height: 32,
+                child: Text(
+                  S.of(context).date,
+                  style: TextStyle(
+                    color: ColorUsed.primaryColor,
+                    fontSize: 18,
+                  ),
+                ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Row(
                   children: [
                     Expanded(
                       child: TextField(
-                        controller: date,
+                        controller: year,
                         decoration: InputDecoration(
                           hintText: S.of(context).year,
+                          border: const OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: ColorUsed.primaryColor,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -88,17 +107,30 @@ class AddItem extends StatelessWidget {
                         width: 10), // Add some space between text fields
                     Expanded(
                       child: TextField(
-                        controller: dateM,
-                        decoration:  InputDecoration(
+                        controller: month,
+                        decoration: InputDecoration(
                           hintText: S.of(context).month,
+                          border: const OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: ColorUsed.primaryColor,
+                            ),
+                          ),
                         ),
                       ),
                     ),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: TextField(
-                        controller: dateM,
-                        decoration:  InputDecoration(
+                        controller: day,
+                        decoration: InputDecoration(
                           hintText: S.of(context).day,
+                          border: const OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: ColorUsed.primaryColor,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -110,18 +142,24 @@ class AddItem extends StatelessWidget {
               ),
               OutlinedButton(
                 onPressed: () async {
+                  date1 = DateTime(int.parse(year.text), int.parse(month.text),
+                      int.parse(day.text));
+                  _timestamp = date1!.millisecondsSinceEpoch.toString();
+                  print('this is time stampe ______ $_timestamp');
                   controller.addItems(
                     {
                       DataBaseSqflite.name: name.text,
                       DataBaseSqflite.number: number.text,
                       DataBaseSqflite.price: price.text,
-                      DataBaseSqflite.date: date.text,
+                      DataBaseSqflite.date: _timestamp,
                     },
                   );
                   name.clear();
                   number.clear();
                   price.clear();
-                  date.clear();
+                  year.clear();
+                  month.clear();
+                  day.clear();
                   controller.update();
                 },
                 child: Text(

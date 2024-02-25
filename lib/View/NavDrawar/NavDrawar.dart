@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:subscription_manager/View/Colors/Colors.dart';
 
+import '../../generated/l10n.dart';
+
 class NavDrawer extends StatelessWidget {
   NavDrawer({super.key});
 
@@ -18,24 +20,33 @@ class NavDrawer extends StatelessWidget {
     return Drawer(
       elevation: 0,
       backgroundColor: ColorUsed.primaryColor,
-      child: Column(
+      child: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          Container(
-            height: 80.0,
-            color: Colors.redAccent,
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: ColorUsed.cardColor,
+            ),
+            child: Text(
+              S.of(context).app_name,
+              style: TextStyle(
+                color: ColorUsed.fontColor,
+              ),
+            ),
           ),
-          const SizedBox(
-            height: 18.0,
-          ),
-          GestureDetector(
-            child: const Text('Click Me -_-'),
+          ListTile(
+            title: Text(S.of(context).add,
+                style: TextStyle(
+                  color: ColorUsed.cardColor,
+                )),
+            leading: Icon(
+              Icons.add,
+              color: ColorUsed.cardColor,
+            ),
             onTap: () {
-              int a = date1!.millisecondsSinceEpoch;
-              
-              // differenceInDays = difference.inDays;
-              print('object clicked ___  $a');
+              // Get.to(AddItem());
             },
-          )
+          ),
         ],
       ),
     );

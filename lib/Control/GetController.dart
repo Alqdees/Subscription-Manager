@@ -17,7 +17,6 @@ class GetController extends GetxController {
   Future<void> addItems(Map<String, dynamic> data) async {
     await dataBaseSqflite.insert(data);
     items.clear();
-
     update();
   }
 
@@ -67,7 +66,6 @@ class GetController extends GetxController {
   Future<void> deleteItem(String id) async {
     items.clear();
     await dataBaseSqflite.delete(id);
-
     update();
   }
 }

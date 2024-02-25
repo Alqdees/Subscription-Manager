@@ -142,10 +142,13 @@ class AddItem extends StatelessWidget {
               ),
               OutlinedButton(
                 onPressed: () async {
-                  date1 = DateTime(int.parse(year.text), int.parse(month.text),
-                      int.parse(day.text));
+                  date1 = DateTime(
+                    int.parse(year.text),
+                    int.parse(month.text),
+                    int.parse(day.text),
+                  );
                   _timestamp = date1!.millisecondsSinceEpoch.toString();
-                  print('this is time stampe ______ $_timestamp');
+
                   controller.addItems(
                     {
                       DataBaseSqflite.name: name.text,

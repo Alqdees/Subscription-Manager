@@ -59,7 +59,7 @@ class CardView extends StatelessWidget {
                                                     .items[index].number,
                                                 priced: controller
                                                     .items[index].price,
-                                                dated: controller
+                                                timestamp: controller
                                                     .items[index].date,
                                                 id: controller.items[index].id,
                                               ),

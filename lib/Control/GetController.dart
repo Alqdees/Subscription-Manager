@@ -68,4 +68,7 @@ class GetController extends GetxController {
     await dataBaseSqflite.delete(id);
     update();
   }
+  Future<void> sendNotification() async {
+
+  }
 }

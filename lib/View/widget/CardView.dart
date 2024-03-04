@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:subscription_manager/Control/GetController.dart';
 import 'package:subscription_manager/generated/l10n.dart';
@@ -6,7 +7,7 @@ import '../pages/UpdateData.dart';
 import 'AllItems.dart';
 
 class CardView extends StatelessWidget {
-  const CardView({Key? key}) : super(key: key);
+  const CardView({super.key});
   // HomeController c = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -16,14 +17,15 @@ class CardView extends StatelessWidget {
         return controller.items.isEmpty
             ? const Center(
                 child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Text('Wait'),
-                    ]),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Text('Wait'),
+                  ],
+                ),
               )
             : Row(
                 children: [

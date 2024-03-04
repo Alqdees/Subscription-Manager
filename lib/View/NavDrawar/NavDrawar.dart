@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:subscription_manager/Model/notification/NotificationApp.dart';
 import 'package:subscription_manager/View/Colors/Colors.dart';
 
 import '../../generated/l10n.dart';
@@ -48,6 +49,19 @@ class NavDrawer extends StatelessWidget {
             ),
             onTap: () {
               Get.to(AddItem());
+            },
+          ),
+          ListTile(
+            title: Text(S.of(context).add,
+                style: TextStyle(
+                  color: ColorUsed.cardColor,
+                )),
+            leading: Icon(
+              Icons.add,
+              color: ColorUsed.cardColor,
+            ),
+            onTap: () {
+              NotificationApp.showNotification();
             },
           ),
         ],

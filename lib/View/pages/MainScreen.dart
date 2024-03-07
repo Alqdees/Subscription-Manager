@@ -10,14 +10,14 @@ import 'package:subscription_manager/generated/l10n.dart';
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
-  void requestLocationPermission() async {
-    PermissionStatus status = await Permission.location.request();
-    if (status.isGranted) {
-      // Permission granted, proceed with location-related tasks
-    } else {
-      // Permission denied, handle accordingly
-    }
-  }
+  // void requestLocationPermission() async {
+  //   PermissionStatus status = await Permission.location.request();
+  //   if (status.isGranted) {
+  //     // Permission granted, proceed with location-related tasks
+  //   } else {
+  //     // Permission denied, handle accordingly
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +25,7 @@ class MainScreen extends StatelessWidget {
       init: GetController(),
       builder: (controller) {
         controller.sendNotification();
+        
         return Scaffold(
           drawer: NavDrawer(),
           appBar: AppBar(

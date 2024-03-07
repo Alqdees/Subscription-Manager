@@ -68,7 +68,15 @@ class GetController extends GetxController {
     await dataBaseSqflite.delete(id);
     update();
   }
-  Future<void> sendNotification() async {
 
+  Future<void> sendNotification() async {
+    final date = DateTime.now();
+    int d = date.day;
+    int m = date.month;
+    int y = date.year;
+    print(DateTime.fromMillisecondsSinceEpoch(int.parse(items[0].date)).day);
+    // for (var i = 0; i < items.length; i++) {
+
+    // }
   }
 }

@@ -146,7 +146,7 @@ class DataBaseSqflite {
       whereArgs: ['%$query%'],
     );
   }
-
+ 
   
 
   // Future<void> updateCostCol(double newValue) async {

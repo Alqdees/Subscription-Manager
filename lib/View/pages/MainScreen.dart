@@ -24,18 +24,17 @@ class MainScreen extends StatelessWidget {
     return GetBuilder<GetController>(
       init: GetController(),
       builder: (controller) {
-        controller.sendNotification();
-        
         return Scaffold(
           drawer: NavDrawer(),
           appBar: AppBar(
-              title: Text(
-                S.of(context).app_name,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
+            title: Text(
+              S.of(context).app_name,
+              style: const TextStyle(
+                color: Colors.white,
               ),
-              backgroundColor: ColorUsed.primaryColor),
+            ),
+            backgroundColor: ColorUsed.primaryColor,
+          ),
           // floatingActionButton: FloatingActionButton(
           //   onPressed: () async {
           //     // requestLocationPermission();

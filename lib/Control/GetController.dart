@@ -70,13 +70,22 @@ class GetController extends GetxController {
   }
 
   Future<void> sendNotification() async {
-    final date = DateTime.now();
-    int d = date.day;
-    int m = date.month;
-    int y = date.year;
-    print(DateTime.fromMillisecondsSinceEpoch(int.parse(items[0].date)).day);
-    // for (var i = 0; i < items.length; i++) {
+    int currentTimestamp = DateTime.now().millisecondsSinceEpoch;
+    DateTime dateTime1 = DateTime.fromMillisecondsSinceEpoch(
+      currentTimestamp,
+    );
+    DateTime dateTime2 = DateTime.fromMillisecondsSinceEpoch(
+      int.parse(
+        items[0].date,
+      ),
+    );
 
-    // }
+    Duration difference = dateTime1.difference(dateTime2);
+
+    if (difference.inDays == 1) {
+      print(' is =========== ${difference.inDays} ===========');
+    } else {
+      print('=====${difference.inDays} Noooo');
+    }
   }
 }

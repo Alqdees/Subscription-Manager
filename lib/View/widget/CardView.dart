@@ -8,9 +8,10 @@ import 'AllItems.dart';
 
 class CardView extends StatelessWidget {
   const CardView({super.key});
-  // HomeController c = Get.find();
+  // GetController c = Get.find();
   @override
   Widget build(BuildContext context) {
+    
     return GetBuilder<GetController>(
       builder: (controller) {
         controller.paginationData();
@@ -30,13 +31,14 @@ class CardView extends StatelessWidget {
             : Row(
                 children: [
                   Expanded(
-                    flex: 4,
+                    flex: 2,
                     child: ListView.builder(
                       controller: controller.controller,
                       itemCount: controller.isLaodingMore
                           ? controller.items.length + 1
                           : controller.items.length,
                       itemBuilder: (BuildContext context, int index) {
+                        controller.sendNotification();
                         return AllItems(
                           name: controller.items[index].name,
                           price: controller.items[index].price,

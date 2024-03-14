@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:subscription_manager/Control/GetController.dart';
 import 'package:subscription_manager/Model/notification/NotificationApp.dart';
 import 'package:subscription_manager/View/Colors/Colors.dart';
 
@@ -7,21 +8,11 @@ import '../../generated/l10n.dart';
 import '../pages/Add_Item.dart';
 
 class NavDrawer extends StatelessWidget {
-  NavDrawer({super.key});
-
-  DateTime? date1 = DateTime(2024, 2, 24);
-  // DateTime? date2 = DateTime(2022, 1, 1);
-
-  // Calculate difference in days
-
-  // Get the difference in days
-  int? differenceInDays;
+  const NavDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Duration difference = date2!.difference(date1!);
     return Drawer(
-      // width: 50,
       elevation: 0,
       backgroundColor: ColorUsed.primaryColor,
       child: ListView(
@@ -61,7 +52,8 @@ class NavDrawer extends StatelessWidget {
               color: ColorUsed.cardColor,
             ),
             onTap: () {
-              NotificationApp.showNotification();
+              GetController().sendNotification();
+              // NotificationApp.showNotification();
             },
           ),
         ],

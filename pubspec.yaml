@@ -16,13 +16,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   sqflite_common_ffi: ^2.3.0
   path_provider: ^2.1.1
-  # searchfield: ^0.9.0
   sqflite: ^2.3.0
-  # workmanager: ^0.5.2
+  workmanager: ^0.5.2
   flutter_local_notifications:
-  flutter_broadcasts: ^0.4.0
   
-  permission_handler: ^11.3.0
   get: ^4.6.6
 
 dev_dependencies:

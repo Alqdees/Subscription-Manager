@@ -11,7 +11,6 @@ class CardView extends StatelessWidget {
   // GetController c = Get.find();
   @override
   Widget build(BuildContext context) {
-    
     return GetBuilder<GetController>(
       builder: (controller) {
         controller.paginationData();
@@ -20,7 +19,7 @@ class CardView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircularProgressIndicator(),
+                    // CircularProgressIndicator(),
                     SizedBox(
                       height: 8,
                     ),
@@ -38,7 +37,7 @@ class CardView extends StatelessWidget {
                           ? controller.items.length + 1
                           : controller.items.length,
                       itemBuilder: (BuildContext context, int index) {
-                        controller.sendNotification();
+                        
                         return AllItems(
                           name: controller.items[index].name,
                           price: controller.items[index].price,

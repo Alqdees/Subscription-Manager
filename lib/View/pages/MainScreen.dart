@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:subscription_manager/Control/GetController.dart';
 import 'package:subscription_manager/View/Colors/Colors.dart';
 import 'package:subscription_manager/View/NavDrawar/NavDrawar.dart';
@@ -11,7 +10,7 @@ class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   // void requestLocationPermission() async {
-  //   PermissionStatus status = await Permission.location.request();
+  //  // PermissionStatus status = await Permission.location.request();
   //   if (status.isGranted) {
   //     // Permission granted, proceed with location-related tasks
   //   } else {
@@ -24,8 +23,9 @@ class MainScreen extends StatelessWidget {
     return GetBuilder<GetController>(
       init: GetController(),
       builder: (controller) {
+        
         return Scaffold(
-          drawer: NavDrawer(),
+          drawer: const NavDrawer(),
           appBar: AppBar(
             title: Text(
               S.of(context).app_name,

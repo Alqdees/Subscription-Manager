@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:subscription_manager/Model/WorkManager/workManager.dart';
 import 'package:subscription_manager/Model/notification/NotificationApp.dart';
 import 'View/pages/MainScreen.dart';
 import 'generated/l10n.dart';
@@ -15,7 +16,12 @@ void main() async {
   if (Platform.isWindows || Platform.isLinux) {
     sqfliteFfiInit();
   }
-  await NotificationApp.init();
+  await Future.wait(
+    [
+      NotificationApp.init(),
+      WorkBackground().init(),
+    ] 
+  );
   // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
   //     FlutterLocalNotificationsPlugin();
   // flutterLocalNotificationsPlugin

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:subscription_manager/Model/notification/NotificationApp.dart';
 import '../Model/DataBaseApp/DataBaseSqflite.dart';
 import '../Model/Items.dart';
 
@@ -74,18 +75,20 @@ class GetController extends GetxController {
     DateTime dateTime1 = DateTime.fromMillisecondsSinceEpoch(
       currentTimestamp,
     );
-    DateTime dateTime2 = DateTime.fromMillisecondsSinceEpoch(
-      int.parse(
-        items[0].date,
-      ),
-    );
-
-    Duration difference = dateTime1.difference(dateTime2);
-
-    if (difference.inDays == 1) {
-      print(' is =========== ${difference.inDays} ===========');
-    } else {
-      print('=====${difference.inDays} Noooo');
+    DateTime dateTime2;
+    Duration difference;
+    for (int i = 0; i < items.length; i++) {
+      dateTime2 = DateTime.fromMillisecondsSinceEpoch(
+        int.parse(
+          items[i].date,
+        ),
+      );
+      difference = dateTime1.difference(dateTime2);
+      if (difference.inDays == 1) {
+        NotificationApp.showNotification(items[i].name, dateTime2.toString());
+      } else {
+        print('=====${difference.inDays} Noooo');
+      }
     }
   }
 }

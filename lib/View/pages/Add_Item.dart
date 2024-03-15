@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
@@ -146,10 +147,10 @@ class AddItem extends StatelessWidget {
                     date1 = DateTime(
                       int.parse(year.text),
                       int.parse(month.text),
-                      int.parse(day.text),
+                      int.parse(day.text), // add 30 or 29 days ??
                     );
                     _timestamp = date1!.millisecondsSinceEpoch.toString();
-
+                    // log('message_____ ${date1.toString()}');
                     controller.addItems(
                       {
                         DataBaseSqflite.name: name.text,

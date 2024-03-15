@@ -5,6 +5,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class DataBaseSqflite {
   static const dataBaseName = "Manager.db";
+  static const dataBase = "Manager.db";
   static const version = 1;
   static const TableName = 'Users';
   static const TableAccount = 'Account';
@@ -59,9 +60,11 @@ class DataBaseSqflite {
     return await openDatabase(
       path,
       version: version,
-      onCreate: (db, version) {
-        db.execute(
+      onCreate: (db, version) async {
+        await db.execute(
             "CREATE TABLE IF NOT EXISTS $TableName ($id INTEGER PRIMARY KEY AUTOINCREMENT  , $name TEXT , $number TEXT , $date TEXT , $price TEXT )");
+        await db.execute(
+            "CREATE TABLE IF NOT EXISTS $TableAccount ($id INTEGER PRIMARY KEY AUTOINCREMENT  , $name TEXT , $number TEXT , $date TEXT , $price TEXT )");
       },
     );
   }
@@ -74,6 +77,9 @@ class DataBaseSqflite {
       options: OpenDatabaseOptions(
         version: version,
         onCreate: (db, version) async {
+          await db.execute(
+              "CREATE TABLE IF NOT EXISTS $TableName ($id INTEGER PRIMARY KEY AUTOINCREMENT  , $name TEXT , $number TEXT , $date TEXT , $price TEXT )");
+
           await db.execute(
               "CREATE TABLE IF NOT EXISTS $TableName ($id INTEGER PRIMARY KEY AUTOINCREMENT  , $name TEXT , $number TEXT , $date TEXT , $price TEXT )");
         },

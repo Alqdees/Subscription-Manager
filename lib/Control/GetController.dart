@@ -92,11 +92,36 @@ class GetController extends GetxController {
       );
       difference = dateTime1.difference(dateTime2);
       if (difference.inDays == 1) {
+        log('message ______ ${difference.inDays}');
         NotificationApp.showNotification(
           dataList[i][DataBaseSqflite.name],
           dateTime2.toString(),
         );
-      } 
+      } else if (difference.inDays == 0) {
+        DataBaseSqflite().insertInAccount({
+          DataBaseSqflite.name: dataList[i][DataBaseSqflite.name],
+          DataBaseSqflite.number: dataList[i][DataBaseSqflite.number],
+          DataBaseSqflite.price: dataList[i][DataBaseSqflite.price],
+          DataBaseSqflite.date: dataList[i][DataBaseSqflite.date],
+        });
+      }
+      continue;
     }
+  }
+
+  List<Items> expired = [];
+  Future<void> getDataFromexpired() async {
+    var dataList = await dataBaseSqflite.getAllDataFromAccount(skip, limit);
+    var item = dataList
+        .map((i) => Items(
+              name: i![DataBaseSqflite.name].toString(),
+              number: i[DataBaseSqflite.number].toString(),
+              price: i[DataBaseSqflite.price].toString(),
+              date: i[DataBaseSqflite.date].toString(),
+              id: i[DataBaseSqflite.id].toString(),
+            ))
+        .toList();
+    expired.addAll(item);
+    update();
   }
 }

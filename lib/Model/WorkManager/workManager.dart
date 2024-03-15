@@ -20,10 +20,9 @@ class WorkBackground {
       frequency: const Duration(minutes: 15),
       constraints: Constraints(
         networkType: NetworkType.connected,
-        requiresCharging: true,
+        // requiresCharging: true,
       ),
     );
-    // actionTask();
   }
 
   void cancelTask(String id) {
@@ -37,15 +36,15 @@ void actionTask() {
   Workmanager().executeTask(
     (task, inputData) async {
       // if (task.contains(WorkBackground.taskName)) {
-     await GetController().sendNotification();
-    // await  DataBaseSqflite().insert(
-    //     {
-    //       DataBaseSqflite.name: 'ahmed sh',
-    //       DataBaseSqflite.number: "01230",
-    //       DataBaseSqflite.date: DateTime.now().millisecondsSinceEpoch.toString(),
-    //       DataBaseSqflite.price: '1000',
-    //     },
-    //   );
+      await GetController().sendNotification();
+      // await  DataBaseSqflite().insert(
+      //     {
+      //       DataBaseSqflite.name: 'ahmed sh',
+      //       DataBaseSqflite.number: "01230",
+      //       DataBaseSqflite.date: DateTime.now().millisecondsSinceEpoch.toString(),
+      //       DataBaseSqflite.price: '1000',
+      //     },
+      //   );
 
       return await Future.value(true);
     },

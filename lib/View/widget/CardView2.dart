@@ -1,22 +1,20 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:subscription_manager/Control/GetController.dart';
-import 'package:subscription_manager/generated/l10n.dart';
+
+import '../../generated/l10n.dart';
 import '../pages/UpdateData.dart';
 import 'AllItems.dart';
 
-class CardView extends StatelessWidget {
-  const CardView({super.key});
-  // GetController c = Get.find();
+class CardExpired extends StatelessWidget {
+  const CardExpired({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<GetController>(
       builder: (controller) {
-        controller.paginationData();
-        return controller.items.isEmpty
+        controller.getDataFromexpired();
+        return controller.expired.isEmpty
             ? const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -36,13 +34,13 @@ class CardView extends StatelessWidget {
                     child: ListView.builder(
                       controller: controller.controller,
                       itemCount: controller.isLaodingMore
-                          ? controller.items.length + 1
-                          : controller.items.length,
+                          ? controller.expired.length + 1
+                          : controller.expired.length,
                       itemBuilder: (BuildContext context, int index) {
                         // print(controller.items[index].name);
                         return AllItems(
-                          name: controller.items[index].name,
-                          price: controller.items[index].price,
+                          name: controller.expired[index].name,
+                          price: controller.expired[index].price,
                           onPressed: () {
                             showDialog(
                               context: context,
@@ -59,14 +57,15 @@ class CardView extends StatelessWidget {
                                             Get.to(
                                               UpdateData(
                                                 named: controller
-                                                    .items[index].name,
+                                                    .expired[index].name,
                                                 numberd: controller
-                                                    .items[index].number,
+                                                    .expired[index].number,
                                                 priced: controller
-                                                    .items[index].price,
+                                                    .expired[index].price,
                                                 timestamp: controller
-                                                    .items[index].date,
-                                                id: controller.items[index].id,
+                                                    .expired[index].date,
+                                                id: controller
+                                                    .expired[index].id,
                                               ),
                                             );
                                           },
@@ -85,7 +84,7 @@ class CardView extends StatelessWidget {
                                         TextButton(
                                           onPressed: () {
                                             controller.deleteItem(
-                                                controller.items[index].id);
+                                                controller.expired[index].id);
                                             Get.back();
                                           },
                                           child: Text(

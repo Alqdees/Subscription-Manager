@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -16,18 +17,16 @@ void main() async {
   if (Platform.isWindows || Platform.isLinux) {
     sqfliteFfiInit();
   }
-  await Future.wait(
-    [
-      NotificationApp.init(),
-      WorkBackground().init(),
-    ] 
-  );
-  // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  //     FlutterLocalNotificationsPlugin();
-  // flutterLocalNotificationsPlugin
-  //     .resolvePlatformSpecificImplementation<
-  //         AndroidFlutterLocalNotificationsPlugin>()
-  //     ?.requestNotificationsPermission();
+  await Future.wait([
+    NotificationApp.init(),
+    WorkBackground().init(),
+  ]);
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.requestNotificationsPermission();
   runApp(const MainApp());
 }
 

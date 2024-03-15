@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subscription_manager/Model/notification/NotificationApp.dart';
@@ -85,6 +87,7 @@ class GetController extends GetxController {
       );
       difference = dateTime1.difference(dateTime2);
       if (difference.inDays == 1) {
+        log(' Ahmed is work ');
         NotificationApp.showNotification(items[i].name, dateTime2.toString());
       } else {
         print('=====${difference.inDays} Noooo');

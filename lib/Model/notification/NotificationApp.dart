@@ -25,13 +25,15 @@ class NotificationApp {
   }
 
   static void showNotification(String name, String body) async {
-    NotificationDetails details = const NotificationDetails(
+    NotificationDetails details =  NotificationDetails(
       android: AndroidNotificationDetails(
         "1",
-        'Ahmed',
+        name,
+        importance: Importance.defaultImportance,
+
       ),
     );
-    flutterLocalNotificationsPlugin.show(0, name, body, details,
+    flutterLocalNotificationsPlugin.show(1, name, body, details,
         payload: 'notification');
   }
 }

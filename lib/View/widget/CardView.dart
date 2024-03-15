@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -37,7 +39,7 @@ class CardView extends StatelessWidget {
                           ? controller.items.length + 1
                           : controller.items.length,
                       itemBuilder: (BuildContext context, int index) {
-                        
+                        // print(controller.items[index].name);
                         return AllItems(
                           name: controller.items[index].name,
                           price: controller.items[index].price,

@@ -13,6 +13,7 @@ class GetController extends GetxController {
   int skip = 0;
   int limit = 20;
   late DataBaseSqflite dataBaseSqflite;
+
   GetController() {
     dataBaseSqflite = DataBaseSqflite();
   }
@@ -73,25 +74,29 @@ class GetController extends GetxController {
   }
 
   Future<void> sendNotification() async {
+    List dataList = await dataBaseSqflite.getAllData();
+
     int currentTimestamp = DateTime.now().millisecondsSinceEpoch;
     DateTime dateTime1 = DateTime.fromMillisecondsSinceEpoch(
       currentTimestamp,
     );
     DateTime dateTime2;
     Duration difference;
-    for (int i = 0; i < items.length; i++) {
+
+    for (int i = 0; i < dataList.length; i++) {
+      // print('object  --- ${dataList[i][DataBaseSqflite.id]}');
       dateTime2 = DateTime.fromMillisecondsSinceEpoch(
         int.parse(
-          items[i].date,
+          dataList[i][DataBaseSqflite.date],
         ),
       );
       difference = dateTime1.difference(dateTime2);
       if (difference.inDays == 1) {
-        log(' Ahmed is work ');
-        NotificationApp.showNotification(items[i].name, dateTime2.toString());
-      } else {
-        print('=====${difference.inDays} Noooo');
-      }
+        NotificationApp.showNotification(
+          dataList[i][DataBaseSqflite.name],
+          dateTime2.toString(),
+        );
+      } 
     }
   }
 }

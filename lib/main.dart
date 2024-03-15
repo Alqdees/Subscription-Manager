@@ -21,12 +21,7 @@ void main() async {
     NotificationApp.init(),
     WorkBackground().init(),
   ]);
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-  flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.requestNotificationsPermission();
+
   runApp(const MainApp());
 }
 

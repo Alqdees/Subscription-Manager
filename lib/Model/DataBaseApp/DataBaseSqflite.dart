@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -40,7 +39,7 @@ class DataBaseSqflite {
   Future<Database> initDataBase() async {
     var datPath = await getDatabasesPath();
     String path = join(datPath, dataBaseName);
-    
+
     // if (await databaseExists(path)) {
     //   try {
     //     await Directory(dirname(path)).create(recursive: true);
@@ -138,7 +137,9 @@ class DataBaseSqflite {
     return db!.delete(TableAccount);
   }
 
-  Future<List<Map<String, dynamic>>> searchInDatabase(String query) async {
+  Future<List<Map<String, dynamic>>> searchInDatabase(
+    String query,
+  ) async {
     Database? db = await databasesq;
     return await db!.query(
       TableName,
@@ -146,8 +147,13 @@ class DataBaseSqflite {
       whereArgs: ['%$query%'],
     );
   }
- 
-  
+
+  Future<List<Map<String, dynamic>>> getAllData() async {
+    Database? db = await databasesq;
+    return await db!.query(
+      TableName,
+    );
+  }
 
   // Future<void> updateCostCol(double newValue) async {
   //   final db = await databasesq;

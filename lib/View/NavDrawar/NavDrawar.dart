@@ -53,7 +53,7 @@ class NavDrawer extends StatelessWidget {
             ),
             onTap: () {
               GetController().sendNotification();
-              // NotificationApp.showNotification();
+              // NotificationApp.showNotification('ahmed', 'ali');
             },
           ),
         ],

@@ -10,6 +10,12 @@ class NotificationApp {
   }
 
   static Future<void> init() async {
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestNotificationsPermission();
     InitializationSettings settings = const InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
       iOS: DarwinInitializationSettings(
@@ -25,12 +31,11 @@ class NotificationApp {
   }
 
   static void showNotification(String name, String body) async {
-    NotificationDetails details =  NotificationDetails(
+    NotificationDetails details = NotificationDetails(
       android: AndroidNotificationDetails(
         "1",
         name,
         importance: Importance.defaultImportance,
-
       ),
     );
     flutterLocalNotificationsPlugin.show(1, name, body, details,

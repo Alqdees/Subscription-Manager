@@ -179,6 +179,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Expired User`
+  String get expired_user {
+    return Intl.message(
+      'Expired User',
+      name: 'expired_user',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details User`
+  String get details_user {
+    return Intl.message(
+      'Details User',
+      name: 'details_user',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -187,6 +207,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ar'),
     ];
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subscription_manager/Control/GetController.dart';
+import 'package:subscription_manager/Model/DataBaseApp/DataBaseSqflite.dart';
 import 'package:subscription_manager/View/Colors/Colors.dart';
 import 'package:subscription_manager/View/NavDrawar/NavDrawar.dart';
 import 'package:subscription_manager/View/widget/CardView.dart';
@@ -23,7 +24,6 @@ class MainScreen extends StatelessWidget {
     return GetBuilder<GetController>(
       init: GetController(),
       builder: (controller) {
-        
         return Scaffold(
           drawer: const NavDrawer(),
           appBar: AppBar(
@@ -35,19 +35,22 @@ class MainScreen extends StatelessWidget {
             ),
             backgroundColor: ColorUsed.primaryColor,
           ),
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () async {
-          //     // requestLocationPermission();
-          //
-          //     Get.to(AddItem());
-          //   },
-          //   backgroundColor: ColorUsed.primaryColor,
-          //   child: Icon(
-          //     Icons.add,
-          //     color: ColorUsed.fontColor,
-          //   ),
-          // ),
-
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              // requestLocationPermission();
+              DataBaseSqflite().insertInAccount({
+                DataBaseSqflite.name: 'Ahmed shaker',
+                DataBaseSqflite.number: "078954",
+                DataBaseSqflite.date: "2024-01-01",
+                DataBaseSqflite.price: "201",
+              });
+            },
+            backgroundColor: ColorUsed.primaryColor,
+            child: Icon(
+              Icons.add,
+              color: ColorUsed.fontColor,
+            ),
+          ),
           body: const CardView(),
         );
       },

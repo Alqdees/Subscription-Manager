@@ -30,21 +30,11 @@ class WorkBackground {
   }
 }
 
-@pragma(
-    'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
+@pragma('vm:entry-point')
 void actionTask() {
   Workmanager().executeTask(
     (task, inputData) async {
-      // if (task.contains(WorkBackground.taskName)) {
       await GetController().sendNotification();
-      // await  DataBaseSqflite().insert(
-      //     {
-      //       DataBaseSqflite.name: 'ahmed sh',
-      //       DataBaseSqflite.number: "01230",
-      //       DataBaseSqflite.date: DateTime.now().millisecondsSinceEpoch.toString(),
-      //       DataBaseSqflite.price: '1000',
-      //     },
-      //   );
 
       return await Future.value(true);
     },

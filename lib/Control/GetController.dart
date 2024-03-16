@@ -10,6 +10,7 @@ class GetController extends GetxController {
   List<Items> items = [];
   bool isLaodingMore = false;
   ScrollController controller = ScrollController();
+  // ScrollController controller = ScrollController();
   int skip = 0;
   int limit = 20;
   late DataBaseSqflite dataBaseSqflite;
@@ -92,20 +93,27 @@ class GetController extends GetxController {
       );
       difference = dateTime1.difference(dateTime2);
       if (difference.inDays == 1) {
-        log('message ______ ${difference.inDays}');
+        log(
+          'message ______ ${difference.inDays}',
+        );
         NotificationApp.showNotification(
           dataList[i][DataBaseSqflite.name],
           dateTime2.toString(),
         );
-      } else if (difference.inDays == 0) {
-        DataBaseSqflite().insertInAccount({
-          DataBaseSqflite.name: dataList[i][DataBaseSqflite.name],
-          DataBaseSqflite.number: dataList[i][DataBaseSqflite.number],
-          DataBaseSqflite.price: dataList[i][DataBaseSqflite.price],
-          DataBaseSqflite.date: dataList[i][DataBaseSqflite.date],
-        });
       }
-      continue;
+      else if (difference.inDays == 0) {
+        DataBaseSqflite().insertInAccount(
+          {
+            DataBaseSqflite.name: dataList[i][DataBaseSqflite.name],
+            DataBaseSqflite.number: dataList[i][DataBaseSqflite.number],
+            DataBaseSqflite.price: dataList[i][DataBaseSqflite.price],
+            DataBaseSqflite.date: dataList[i][DataBaseSqflite.date],
+
+          },
+        //  dataList[i][DataBaseSqflite.id],
+        );
+      }
+     
     }
   }
 

@@ -11,5 +11,7 @@
     "add": "Add Subscription",
     "year": "Year ",
     "month": "Month ",
-    "day": "Day "
+    "day": "Day ",
+    "expired_user": "Expired User",
+    "details_user": "Details User"
 }

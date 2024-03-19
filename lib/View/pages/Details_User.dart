@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
+import 'package:subscription_manager/View/widget/TextView.dart';
 import '../../generated/l10n.dart';
 import '../Colors/Colors.dart';
 
@@ -19,11 +18,21 @@ class DetailsUser extends StatelessWidget {
         ),
         backgroundColor: ColorUsed.primaryColor,
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           children: [
-            Text('Ahmed'),
-            Text('Ahmed'),
+            TextView(text: 'd', lable: 's'),
+            const SizedBox(
+              height: 20,
+            ),
+            TextView(text: 'd', lable: 's'),
+            const SizedBox(
+              height: 20,
+            ),
+            TextView(text: 'd', lable: 's'),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),

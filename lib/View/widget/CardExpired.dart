@@ -5,37 +5,39 @@ import '../../generated/l10n.dart';
 import 'AllItems.dart';
 
 class CardExpired extends StatelessWidget {
-  CardExpired({super.key});
-  final GetController c = Get.put(GetController());
+  CardExpired({
+    super.key,
+    required this.c,
+  });
+  GetController c;
+  // final c = Get.put(GetController());
   @override
   Widget build(BuildContext context) {
-    c.getDataFromexpired();
-    return GetBuilder<GetController>(
-      builder: (controller) {
-        // controller.getDataFromexpired();
-        return controller.expired.isEmpty
-            ? const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text('Wait'),
-                  ],
+    return c.expired.isEmpty
+        ? const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 8,
                 ),
-              )
-            : Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: ListView.builder(
-                      itemCount: controller.expired.length,
+                Text('Wait'),
+              ],
+            ),
+          )
+        : Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: GetBuilder<GetController>(
+                  builder: (controller) {
+                    return ListView.builder(
+                      itemCount: c.expired.length,
                       itemBuilder: (BuildContext context, int index) {
                         return AllItems(
-                          name: controller.expired[index].name,
-                          price: controller.expired[index].price,
+                          name: c.expired[index].name,
+                          price: c.expired[index].price,
                           onPressed: () {
                             showDialog(
                               context: context,
@@ -61,7 +63,11 @@ class CardExpired extends StatelessWidget {
                                           width: width / 5,
                                         ),
                                         TextButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            c.deleteItemExpired(
+                                                c.expired[index].id);
+                                            Get.back();
+                                          },
                                           child: Text(
                                             S.of(context).delete,
                                             style: const TextStyle(
@@ -79,11 +85,11 @@ class CardExpired extends StatelessWidget {
                           },
                         );
                       },
-                    ),
-                  ),
-                ],
-              );
-      },
-    );
+                    );
+                  },
+                ),
+              ),
+            ],
+          );
   }
 }

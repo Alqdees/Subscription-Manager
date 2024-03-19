@@ -30,7 +30,7 @@ class AddItem extends StatelessWidget {
     data = DataBaseSqflite();
 
     return GetBuilder<GetController>(
-      init: GetController(),
+      
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(

@@ -10,6 +10,7 @@ class WorkBackground {
       actionTask,
       isInDebugMode: false,
     );
+
     registerMyTask();
   }
 
@@ -17,11 +18,6 @@ class WorkBackground {
     await Workmanager().registerPeriodicTask(
       uniqueName,
       taskName,
-      frequency: const Duration(minutes: 15),
-      constraints: Constraints(
-        networkType: NetworkType.connected,
-        // requiresCharging: true,
-      ),
     );
   }
 
@@ -34,8 +30,7 @@ class WorkBackground {
 void actionTask() {
   Workmanager().executeTask(
     (task, inputData) async {
-      await GetController().sendNotification();
-
+      GetController().sendNotification();
       return await Future.value(true);
     },
   );

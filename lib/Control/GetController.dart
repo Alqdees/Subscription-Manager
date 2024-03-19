@@ -73,6 +73,11 @@ class GetController extends GetxController {
     await dataBaseSqflite.delete(id);
     update();
   }
+  Future<void> deleteItemExpired(String id) async {
+    expired.clear();
+    await dataBaseSqflite.deleteAccount(id);
+    update();
+  }
 
   Future<void> sendNotification() async {
     List dataList = await dataBaseSqflite.getAllData();
@@ -100,36 +105,35 @@ class GetController extends GetxController {
           dataList[i][DataBaseSqflite.name],
           dateTime2.toString(),
         );
-      }
-      else if (difference.inDays == 0) {
+      } else if (difference.inDays == 0) {
         DataBaseSqflite().insertInAccount(
           {
             DataBaseSqflite.name: dataList[i][DataBaseSqflite.name],
             DataBaseSqflite.number: dataList[i][DataBaseSqflite.number],
             DataBaseSqflite.price: dataList[i][DataBaseSqflite.price],
             DataBaseSqflite.date: dataList[i][DataBaseSqflite.date],
-
           },
-        //  dataList[i][DataBaseSqflite.id],
+          //  dataList[i][DataBaseSqflite.id],
         );
       }
-     
     }
   }
 
   List<Items> expired = [];
   Future<void> getDataFromexpired() async {
-    var dataList = await dataBaseSqflite.getAllDataFromAccount(skip, limit);
-    var item = dataList
-        .map((i) => Items(
-              name: i![DataBaseSqflite.name].toString(),
-              number: i[DataBaseSqflite.number].toString(),
-              price: i[DataBaseSqflite.price].toString(),
-              date: i[DataBaseSqflite.date].toString(),
-              id: i[DataBaseSqflite.id].toString(),
-            ))
-        .toList();
-    expired.addAll(item);
-    update();
+    if (expired.isEmpty) {
+      var dataList = await dataBaseSqflite.getAllDataFromAccount(skip, limit);
+      var item = dataList
+          .map((i) => Items(
+                name: i![DataBaseSqflite.name].toString(),
+                number: i[DataBaseSqflite.number].toString(),
+                price: i[DataBaseSqflite.price].toString(),
+                date: i[DataBaseSqflite.date].toString(),
+                id: i[DataBaseSqflite.id].toString(),
+              ))
+          .toList();
+      expired.addAll(item);
+      update();
+    }
   }
 }

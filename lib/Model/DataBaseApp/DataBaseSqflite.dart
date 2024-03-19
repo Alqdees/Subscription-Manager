@@ -98,7 +98,6 @@ class DataBaseSqflite {
 
   Future<int> insertInAccount(
     Map<String, dynamic> data,
-    
   ) async {
     Database? db = await databasesq;
     // db?.rawDelete(
@@ -136,18 +135,20 @@ class DataBaseSqflite {
   // delete
   Future<Future<int>?> delete(String id) async {
     Database? db = await databasesq;
-   
+
     return db?.rawDelete(
       'DELETE FROM $TableName WHERE ID = ?',
       [id],
     );
   }
 
-  Future<Future<int>?> deleteAccount() async {
+  Future<Future<int>?> deleteAccount(String id) async {
     Database? db = await databasesq;
 
-    // db?.delete(TableName, id);
-    return db!.delete(TableAccount);
+    return db?.rawDelete(
+      'DELETE FROM $TableAccount WHERE ID = ?',
+      [id],
+    );
   }
 
   Future<List<Map<String, dynamic>>> searchInDatabase(

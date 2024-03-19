@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,107 +7,104 @@ import '../pages/UpdateData.dart';
 import 'AllItems.dart';
 
 class CardView extends StatelessWidget {
-  const CardView({super.key});
-  // GetController c = Get.find();
+  CardView({
+    super.key,
+    required this.c,
+  });
+  GetController c;
+
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<GetController>(
-      builder: (controller) {
-        controller.paginationData();
-        return controller.items.isEmpty
-            ? const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text('Wait'),
-                  ],
+    return c.items.isEmpty
+        ? const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 8,
                 ),
-              )
-            : Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: ListView.builder(
-                      controller: controller.controller,
-                      itemCount: controller.isLaodingMore
-                          ? controller.items.length + 1
-                          : controller.items.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        // print(controller.items[index].name);
-                        return AllItems(
-                          name: controller.items[index].name,
-                          price: controller.items[index].price,
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                final width = MediaQuery.of(context).size.width;
-                                return AlertDialog(
-                                  title: Text(S.of(context).select),
-                                  actions: [
-                                    Row(
-                                      children: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Get.back();
-                                            Get.to(
-                                              UpdateData(
-                                                named: controller
-                                                    .items[index].name,
-                                                numberd: controller
-                                                    .items[index].number,
-                                                priced: controller
-                                                    .items[index].price,
-                                                timestamp: controller
-                                                    .items[index].date,
-                                                id: controller.items[index].id,
-                                              ),
-                                            );
-                                          },
-                                          child: Text(
-                                            S.of(context).edit,
-                                            style: const TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 22,
+                Text('Wait'),
+              ],
+            ),
+          )
+        : Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: GestureDetector(
+                  onTap: () {
+                    c.sendNotification();
+                  },
+                  child: ListView.builder(
+                    controller: c.controller,
+                    itemCount:
+                        c.isLaodingMore ? c.items.length + 1 : c.items.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return AllItems(
+                        name: c.items[index].name,
+                        price: c.items[index].price,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              final width = MediaQuery.of(context).size.width;
+                              return AlertDialog(
+                                title: Text(S.of(context).select),
+                                actions: [
+                                  Row(
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Get.back();
+                                          Get.to(
+                                            UpdateData(
+                                              named: c.items[index].name,
+                                              numberd: c.items[index].number,
+                                              priced: c.items[index].price,
+                                              timestamp: c.items[index].date,
+                                              id: c.items[index].id,
                                             ),
+                                          );
+                                        },
+                                        child: Text(
+                                          S.of(context).edit,
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 22,
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: width / 5,
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            controller.deleteItem(
-                                                controller.items[index].id);
-                                            Get.back();
-                                          },
-                                          child: Text(
-                                            S.of(context).delete,
-                                            style: const TextStyle(
-                                              color: Colors.red,
-                                              fontSize: 22,
-                                            ),
+                                      ),
+                                      SizedBox(
+                                        width: width / 5,
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          c.deleteItem(c.items[index].id);
+                                          Get.back();
+                                        },
+                                        child: Text(
+                                          S.of(context).delete,
+                                          style: const TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 22,
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                        );
-                      },
-                    ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
                   ),
-                ],
-              );
-      },
-    );
+                ),
+              ),
+            ],
+          );
   }
 }

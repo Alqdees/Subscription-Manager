@@ -4,8 +4,16 @@ import '../../generated/l10n.dart';
 import '../Colors/Colors.dart';
 
 class DetailsUser extends StatelessWidget {
-  const DetailsUser({super.key});
-
+   DetailsUser({
+    super.key,
+    this.name,
+    this.number,
+    this.price,
+    this.year,
+    this.month,
+    this.day,
+  });
+  String? name, number, price, year, month, day;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

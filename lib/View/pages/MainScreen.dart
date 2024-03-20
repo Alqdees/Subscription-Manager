@@ -1,15 +1,27 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subscription_manager/Control/GetController.dart';
+import 'package:subscription_manager/Model/notification/NotificationApp.dart';
 import 'package:subscription_manager/View/Colors/Colors.dart';
 import 'package:subscription_manager/View/NavDrawar/NavDrawar.dart';
 import 'package:subscription_manager/View/widget/CardView.dart';
 import 'package:subscription_manager/generated/l10n.dart';
 
-class MainScreen extends StatelessWidget {
+import 'Subscription_expired.dart';
+
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+
+
+ 
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +40,7 @@ class MainScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           // requestLocationPermission();
+          NotificationApp.showNotification('name', 'body');
         },
         backgroundColor: ColorUsed.primaryColor,
         child: Icon(

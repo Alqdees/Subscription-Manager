@@ -1,12 +1,16 @@
+import 'dart:async';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:get/get.dart';
-import 'package:subscription_manager/View/pages/Add_Item.dart';
+
+
 
 class NotificationApp {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-  static OnTap(NotificationResponse detels) {
-    Get.to(AddItem());
+  static StreamController<NotificationResponse> streamnot =
+      StreamController();
+  static OnTap(NotificationResponse detels){
+    // Get.to(AddItem());
+     streamnot.add(detels);
   }
 
   static Future<void> init() async {

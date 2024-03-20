@@ -17,8 +17,10 @@ dependencies:
   sqflite_common_ffi: 
   path_provider: 
   sqflite: 
-  workmanager: 
+  workmanager:
+  flutter_background_service:
   flutter_local_notifications:
+
   
   get: 
 

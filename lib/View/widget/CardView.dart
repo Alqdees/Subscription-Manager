@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:subscription_manager/Control/GetController.dart';
 import 'package:subscription_manager/generated/l10n.dart';
+
 import '../pages/UpdateData.dart';
 import 'AllItems.dart';
 
@@ -20,7 +20,7 @@ class CardView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircularProgressIndicator(),
+                // CircularProgressIndicator(),
                 SizedBox(
                   height: 8,
                 ),

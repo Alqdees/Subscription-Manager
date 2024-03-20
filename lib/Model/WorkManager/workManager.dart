@@ -18,6 +18,12 @@ class WorkBackground {
     await Workmanager().registerPeriodicTask(
       uniqueName,
       taskName,
+      frequency: const Duration(minutes: 15),
+      initialDelay: const Duration(minutes: 15),
+      constraints: Constraints(
+        networkType: NetworkType.connected,
+        requiresCharging: true,
+      ),
     );
   }
 

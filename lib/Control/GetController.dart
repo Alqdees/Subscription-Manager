@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:subscription_manager/Model/notification/NotificationApp.dart';
 import '../Model/DataBaseApp/DataBaseSqflite.dart';
 import '../Model/Items.dart';
+import '../View/pages/Subscription_expired.dart';
 
 class GetController extends GetxController {
   List<Items> items = [];
@@ -18,6 +19,7 @@ class GetController extends GetxController {
   GetController() {
     dataBaseSqflite = DataBaseSqflite();
   }
+ 
 
   Future<void> addItems(Map<String, dynamic> data) async {
     await dataBaseSqflite.insert(data);
@@ -73,6 +75,7 @@ class GetController extends GetxController {
     await dataBaseSqflite.delete(id);
     update();
   }
+
   Future<void> deleteItemExpired(String id) async {
     expired.clear();
     await dataBaseSqflite.deleteAccount(id);
@@ -122,7 +125,10 @@ class GetController extends GetxController {
   List<Items> expired = [];
   Future<void> getDataFromexpired() async {
     if (expired.isEmpty) {
-      var dataList = await dataBaseSqflite.getAllDataFromAccount(skip, limit);
+      var dataList = await dataBaseSqflite.getAllDataFromAccount(
+        skip,
+        limit,
+      );
       var item = dataList
           .map((i) => Items(
                 name: i![DataBaseSqflite.name].toString(),

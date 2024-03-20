@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:subscription_manager/View/Colors/Colors.dart';
 import 'package:subscription_manager/View/pages/Details_User.dart';
 import 'package:subscription_manager/View/pages/Subscription_expired.dart';
-
 import '../../generated/l10n.dart';
 import '../pages/Add_Item.dart';
 
@@ -39,7 +38,7 @@ class NavDrawer extends StatelessWidget {
               color: ColorUsed.cardColor,
             ),
             onTap: () {
-              Get.to(AddItem());
+              Get.to(() => AddItem());
             },
           ),
           ListTile(
@@ -52,7 +51,7 @@ class NavDrawer extends StatelessWidget {
               color: ColorUsed.cardColor,
             ),
             onTap: () {
-              Get.to(const DetailsUser());
+              Get.to( () => DetailsUser());
             },
           ),
           ListTile(

@@ -1,16 +1,18 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:subscription_manager/Model/WorkManager/workManager.dart';
 import 'package:subscription_manager/Model/notification/NotificationApp.dart';
+import 'package:subscription_manager/View/pages/Add_Item.dart';
 import 'View/pages/MainScreen.dart';
 import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // DartPluginRegistrant.ensureInitialized();
+  DartPluginRegistrant.ensureInitialized();
 
   if (Platform.isWindows || Platform.isLinux) {
     sqfliteFfiInit();
@@ -23,8 +25,37 @@ void main() async {
   runApp(const MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  void listenToNotificationStream() {
+    NotificationApp.streamnot.stream.listen(
+      (event) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) {
+              return  AddItem();
+            },
+          ),
+        );
+        // Get.to(
+        //   () => const SubscriptionExpired(),
+        // );
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    listenToNotificationStream();
+  }
 
   @override
   Widget build(BuildContext context) {

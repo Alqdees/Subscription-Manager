@@ -12,20 +12,21 @@ class SubscriptionExpired extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            S.of(context).expired_user,
-            style: const TextStyle(
-              color: Colors.white,
-            ),
+      appBar: AppBar(
+        title: Text(
+          S.of(context).expired_user,
+          style: const TextStyle(
+            color: Colors.white,
           ),
-          backgroundColor: ColorUsed.primaryColor,
         ),
-        body: GetBuilder<GetController>(
-          builder: (controller) {
-            controller.getDataFromexpired();
-            return CardExpired(c: controller);
-          },
-        ));
+        backgroundColor: ColorUsed.primaryColor,
+      ),
+      body: GetBuilder<GetController>(
+        builder: (controller) {
+          controller.getDataFromexpired();
+          return CardExpired(c: controller);
+        },
+      ),
+    );
   }
 }
